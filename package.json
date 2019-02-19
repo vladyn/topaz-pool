@@ -4,6 +4,11 @@
   "description": "Boilerplate for candidates solving the frontend assignment task.",
   "main": "index.js",
   "module": "main.js",
+  "scripts": {
+    "start": "webpack-dev-server --watch --progress --color --env.config=dev",
+    "prod": "webpack --env.config=prod",
+    "test": "mocha -r esm --recursive 'tests/'"
+  },
   "author": "author's name",
   "license": "MIT",
   "dependencies": {
