@@ -1,0 +1,16 @@
+{
+  "name": "frontend-assignment-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate for candidates solving the frontend assignment task.",
+  "main": "index.js",
+  "module": "main.js",
+  "author": "author's name",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+
+  },
+  "directories": {
+  }
+}
