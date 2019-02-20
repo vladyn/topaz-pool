@@ -1,5 +1,6 @@
 import { KEY } from "../constants";
 import HtmlElement from "../utils/HtmlElement";
+import dateFUT from "../utils/dateService";
 
 const topazPool = (() => {
   async function fetchItems(target, key, ...rest) {
@@ -22,6 +23,7 @@ const topazPool = (() => {
       return response;
     });
   }
+
   function renderResponse(response) {
     const photoStreamContainer = HtmlElement.create('div')
       .addId('photo-stream')
@@ -60,6 +62,7 @@ const topazPool = (() => {
             href: `https://farm${prop.farm}.staticflickr.com/${prop.server}/${prop.id}_${prop.secret}.jpg`,
             title: prop.title,
           },
+          dateadded: dateFUT(prop.dateadded),
           meta: {
             title: {
               title: (prop.title !== '') ? prop.title : 'No title',

@@ -77,7 +77,12 @@ HtmlElement.prototype.addExtendedChild = function addExtendedChild(args) {
     .addText(args.textContent)
     .addPicture(args.picture)
     .addLink(args.meta.title)
-    .addLink(args.meta.author);
+    .addLink(args.meta.author)
+    .addChild({
+      element: 'div',
+      class: "date",
+      textContent: args.dateadded,
+    });
   this.append(element);
   return this;
 };
