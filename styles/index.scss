@@ -1,3 +1,10 @@
+@import 'mixins';
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
 .grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -5,6 +12,14 @@
   grid-gap: 4px 4px;
   align-items: center;
   justify-content: space-between;
+  @include tablet {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(1, 48vw [col-entry]);
+  }
+  @include desktop {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(1, 80vw [col-entry]);
+  }
 }
 
 .stream-wrapper {
@@ -13,6 +28,62 @@
   margin: 0;
 }
 
+@media (min-width: 320px) and (max-width: 639px) {
+   .photo-title,
+   .photo-author,
+   .photo-date {
+     display: none;
+   }
+}
+
 .flex-item {
   display: flex;
+}
+
+li.entry-item {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: stretch;
+  align-items: stretch;
+
+  & > a {
+    flex: 1 0 100%;
+  }
+  & > span:first-child {
+    flex: 4 0 100%;
+  }
+  & > span:last-child {
+    flex: 0 0 auto;
+  }
+  & > div {
+    flex: 1 2 30%;
+  }
+}
+
+.lightbox-wrapper {
+  position: absolute;
+  top: 2vh;
+  padding: 2em;
+  background: white;
+  flex-flow: column wrap;
+  justify-content: stretch;
+  align-items: stretch;
+  box-shadow: 0 0 16px rgba(0, 0, 0, .4);
+}
+.light-cover {
+  position: absolute;
+  width: 97vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }

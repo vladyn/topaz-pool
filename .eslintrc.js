@@ -13,5 +13,7 @@ module.exports = {
         "max-len": 1,
         "quotes": 0,
         "no-restricted-syntax": 0,
+        "dot-notation": 0,
+        "no-prototype-builtins": 0,
     }
 };

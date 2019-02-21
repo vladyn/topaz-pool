@@ -44,7 +44,7 @@ const topazPool = (() => {
       response.photos.photo.forEach((prop) => {
         ul.addExtendedChild({
           element: 'li',
-          id: prop.id,
+          id: `list-${prop.id}`,
           class: 'entry',
           classes: ['entry-item', 'flex-item'],
           picture: {
@@ -61,6 +61,8 @@ const topazPool = (() => {
             ],
             href: `https://farm${prop.farm}.staticflickr.com/${prop.server}/${prop.id}_${prop.secret}.jpg`,
             title: prop.title,
+            id: prop.id,
+            secret: prop.secret,
           },
           dateadded: dateFUT(prop.dateadded),
           meta: {

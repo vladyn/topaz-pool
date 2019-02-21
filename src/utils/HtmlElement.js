@@ -3,13 +3,14 @@ function HtmlElement(el) {
   this.element = (el instanceof HTMLElement) ? el : document.createElement(el);
 }
 
-// Create chainable element
+// Create chain-able element
 HtmlElement.create = function create(el) {
   return new HtmlElement(el);
 };
 
 // Adding an id
 HtmlElement.prototype.addId = function addId(id) {
+  if (id === undefined) return this;
   this.element.id = id || '';
   return this;
 };
@@ -21,8 +22,6 @@ HtmlElement.prototype.addClass = function addClass(className) {
 };
 
 // Add multiple classes. Use of rest parameter
-// allows classNames to be either a comma-
-// separated list or an array of args.
 HtmlElement.prototype.addClasses = function addClasses(...classNames) {
   if (!classNames[0]) return this;
   for (const className of classNames[0]) {
@@ -37,10 +36,17 @@ HtmlElement.prototype.addText = function addText(text = '') {
   return this;
 };
 
+// Adding a text content
+HtmlElement.prototype.addHtml = function addHtml(html) {
+  if (!html) return this;
+  this.element.innerHTML = html;
+  return this;
+};
+
 // Create a picture element
 HtmlElement.prototype.addPicture = function addPicture(details) {
   const {
-    src: s, srcset: ss, title: t, href: h, media: m,
+    src: s, srcset: ss, title: t, href: h, media: m, id: i, secret: e,
   } = details;
   const link = document.createElement('a');
   const picture = document.createElement('picture');
@@ -51,7 +57,9 @@ HtmlElement.prototype.addPicture = function addPicture(details) {
     source.srcset = value;
     picture.appendChild(source);
   });
-  [img.src, link.title, link.href, img.alt] = [s, t, h, t];
+  [img.src, link.title, link.href, img.alt, img.id] = [s, t, h, t, i];
+  if (i !== undefined) img.setAttribute('data-id', i);
+  if (e !== undefined) img.setAttribute('data-secret', e);
   picture.appendChild(img);
   link.appendChild(picture);
   this.element.appendChild(link);
@@ -64,11 +72,13 @@ HtmlElement.prototype.addChild = function addChild(args) {
     .addId(args.id)
     .addClass(args.class)
     .addClasses(args.classes)
-    .addText(args.textContent);
+    .addText(args.textContent)
+    .addHtml(args.html);
   this.append(element);
   return this;
 };
 
+// Adding an extended html widget, holding a single photo entry
 HtmlElement.prototype.addExtendedChild = function addExtendedChild(args) {
   const element = HtmlElement.create(args.element)
     .addId(args.id)
@@ -80,7 +90,7 @@ HtmlElement.prototype.addExtendedChild = function addExtendedChild(args) {
     .addLink(args.meta.author)
     .addChild({
       element: 'div',
-      class: "date",
+      class: "photo-date",
       textContent: args.dateadded,
     });
   this.append(element);

@@ -63,6 +63,8 @@ describe("Tests for HtmlElement constructor function", function() {
           ],
           href: `farm.jpg`,
           title: 'prop.title',
+          id: 'prop.id',
+          secret: 'prop.secret',
         },
         meta: {
           title: {
@@ -84,7 +86,7 @@ describe("Tests for HtmlElement constructor function", function() {
         .should
         .have
         .property("outerHTML")
-        .equal('<ul><li id=""><a title="prop.title" href="farm.jpg"><picture><source media="(max-width: 639px)" srcset="farm_q.jpg"><img src="farm.jpg" alt="prop.title"></picture></a><span class="photo-title"><a href="farm.jpg" title="prop.title">prop.title</a></span><span class="photo-author"><a href="flickr.com/prop.owner" title="prop.ownername">prop.ownername</a></span><div id="" class="date"></div></li></ul>');
+        .equal('<ul><li><a title="prop.title" href="farm.jpg"><picture><source media="(max-width: 639px)" srcset="farm_q.jpg"><img src="farm.jpg" alt="prop.title" id="prop.id" data-id="prop.id" data-secret="prop.secret"></picture></a><span class="photo-title"><a href="farm.jpg" title="prop.title">prop.title</a></span><span class="photo-author"><a href="flickr.com/prop.owner" title="prop.ownername">prop.ownername</a></span><div class="photo-date"></div></li></ul>');
     });
   });
 
