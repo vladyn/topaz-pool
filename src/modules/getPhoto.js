@@ -15,6 +15,11 @@ const getPhoto = (() => {
   const buildLightBox = (res) => {
     const wrapper = HtmlElement.create('div')
       .addClasses(['lightbox-wrapper', 'flex-item'])
+      .addChild({
+        element: 'h1',
+        class: 'light-title',
+        textContent: res.photo.title['_content'],
+      })
       .addPicture({
         src: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.id}_${res.photo.secret}.jpg`,
         media: [
@@ -31,11 +36,6 @@ const getPhoto = (() => {
         title: res.photo.title['_content'],
         id: `lightbox-${res.photo.id}`,
         secret: `lightbox-${res.photo.secret}`,
-      })
-      .addChild({
-        element: 'div',
-        class: 'light-title',
-        textContent: res.photo.title['_content'],
       })
       .addChild({
         element: 'div',
@@ -66,11 +66,23 @@ const getPhoto = (() => {
         element: 'div',
         class: 'light-tags',
         textContent: `Tags`,
+      })
+      .addLink({
+        id: 'closeBtn',
+        title: 'Close',
+        href: `javascript: ;`,
+        elementWrapper: 'span',
+        className: 'close',
       });
 
     cover.classList.remove('hidden');
     cover.classList.add('visible');
     wrapper.appendTo(cover);
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      wrapper.element.remove();
+      cover.classList.remove('visible');
+      cover.classList.add('hidden');
+    });
   };
   const addEvent = (response) => {
     response.photos.photo.forEach((prop) => {

@@ -100,10 +100,11 @@ HtmlElement.prototype.addExtendedChild = function addExtendedChild(args) {
 // Adding a hyperlink the it's attributes
 HtmlElement.prototype.addLink = function addLink(details) {
   const {
-    href: h, title: t, elementWrapper: e, className: c,
+    href: h, title: t, elementWrapper: e, className: c, id: i,
   } = details;
   const span = HtmlElement.create(e).addClass(c);
   const link = HtmlElement.create('a');
+  if (i !== undefined) link.addId(i);
   link.element.href = h;
   link.element.title = t;
   link.addText(t);

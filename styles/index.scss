@@ -4,6 +4,7 @@ html, body {
 }
 body {
   margin: 0;
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
 .grid {
   display: grid;
@@ -62,8 +63,8 @@ li.entry-item {
 
 .lightbox-wrapper {
   position: absolute;
-  top: 2vh;
   padding: 2em;
+  width: 82vw;
   background: white;
   flex-flow: column wrap;
   justify-content: stretch;
@@ -72,9 +73,13 @@ li.entry-item {
 }
 .light-cover {
   position: absolute;
-  width: 97vw;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   height: 100%;
   background-color: rgba(0, 0, 0, .7);
+  display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
@@ -86,4 +91,11 @@ li.entry-item {
 
 .visible {
   visibility: visible;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  display: inline-block;
 }
