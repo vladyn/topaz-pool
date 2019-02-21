@@ -65,7 +65,7 @@ const getPhoto = (() => {
       .addChild({
         element: 'div',
         class: 'light-tags',
-        textContent: `Tags`,
+        textContent: `tags (${res.photo.tags.tag.length}): ${res.photo.tags.tag.map(name => name['_content']).join('; ')}`,
       })
       .addLink({
         id: 'closeBtn',
