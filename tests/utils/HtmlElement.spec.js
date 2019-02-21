@@ -37,6 +37,11 @@ describe("Tests for HtmlElement constructor function", function() {
       ul.addClasses(['some', 'other']);
       ul.element.should.have.property("outerHTML").equal('<ul class="some other"></ul>');
     });
+    it('should add a htmlContent', function () {
+      const div = (new HtmlElement('div'));
+      div.addHtml('<p>some</p>');
+      div.element.should.have.property("outerHTML").equal('<div><p>some</p></div>');
+    });
     it('should add a child to the html element', function () {
       const elAttributes = {
         element: 'li',
@@ -111,6 +116,9 @@ describe("Tests for HtmlElement constructor function", function() {
     });
     it('should have addText method', function () {
       expect(HtmlElement.prototype.addText).to.be.a('function');
+    });
+    it('should have addHtml method', function () {
+      expect(HtmlElement.prototype.addHtml).to.be.a('function');
     });
     it('should have addLink method', function () {
       expect(HtmlElement.prototype.addLink).to.be.a('function');
