@@ -7,10 +7,7 @@ import topazPool from '../../src/modules/topazPool';
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
-const assert = chai.assert;
-const expect = chai.expect;
-const should = chai.should();
-const spy = sinon.spy();
+const { assert, expect } = require('chai');
 chai.should();
 
 describe("Tests for Requesting, responding and building the markup", function() {
@@ -45,12 +42,14 @@ describe("Tests for Requesting, responding and building the markup", function() 
             },
           ],
           "stat": "ok"
-        }
+        },
+        "stat": "ok",
       };
       responseNegative = {
         "photos": {
           "stat": "ko"
-        }
+        },
+        "stat": "ko",
       };
       fetchAsync = async function fetchAsync(url) {
         return new Promise((resolve, reject) => {
@@ -63,8 +62,9 @@ describe("Tests for Requesting, responding and building the markup", function() 
           }
         });
       };
-      handleResponse = sinon.stub(topazPool, 'handleResponse').resolves(responsePositive);
-      renderResponse = sinon.stub(topazPool, 'renderResponse').resolves(responsePositive);
+      // handleResponse = sinon.stub(topazPool, 'handleResponse');
+      handleResponse = sinon.spy(topazPool, 'handleResponse')
+      renderResponse = sinon.stub(topazPool, 'renderResponse');
     });
     afterEach(function () {
       fetchItems.restore();
@@ -86,6 +86,29 @@ describe("Tests for Requesting, responding and building the markup", function() 
     it('should fulfilled', function () {
       fetchItems = sinon.stub(topazPool, 'fetchItems').returns(fetchAsync('ok'));
       return expect(fetchItems()).to.eventually.be.fulfilled.then((res) => {
+        expect(res).to.be.equal(responsePositive);
+      });
+    });
+    it('should handle the response', function () {
+      handleResponse(responseNegative);
+      expect(handleResponse).to.be.calledOnce;
+      expect(handleResponse).to.be.calledOnceWith(responseNegative);
+    });
+    it('should respond positively', function () {
+      return expect(handleResponse(responsePositive)).to.eventually.be.fulfilled.then((res) => {
+        expect(res).not.to.be.empty;
+        expect(res).to.be.equal(responsePositive);
+      });
+    });
+    it('should respond negatively', function () {
+      return expect(handleResponse(responseNegative)).to.eventually.be.rejected.then((res) => {
+        expect(res).to.be.empty;
+        expect(res).to.be.equal('');
+      });
+    });
+    it('should respond positively2', function () {
+      return expect(handleResponse(responsePositive)).to.eventually.be.fulfilled.then((res) => {
+        expect(res).not.to.be.empty;
         expect(res).to.be.equal(responsePositive);
       });
     });

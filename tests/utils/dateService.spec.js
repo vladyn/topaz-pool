@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 import dateFUT from '../../src/utils/dateService';
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = require('chai');
 
 const normalizedDate = sinon.spy(dateFUT);
 const unixTs = '1550648442';

@@ -8,7 +8,7 @@ const getPhoto = (() => {
   const cover = document.getElementById('cover');
   cover.classList.add('hidden');
   const getImage = async (id, secret) => {
-    const result = await fetch(`${API_URL}?method=flickr.photos.getInfo&api_key=${KEY}&photo_id=${id}&secret=${secret}&format=json&nojsoncallback=1`);
+    const result = await fetch(`${API_URL}?method=flickr.photos.getInfo&api_key=${KEY}&photo_id=${id}&secret=${secret}&format=${DETAILS.format}&nojsoncallback=${DETAILS.callback}`);
     const json = await result.json();
     return json;
   };
@@ -77,6 +77,7 @@ const getPhoto = (() => {
 
     cover.classList.remove('hidden');
     cover.classList.add('visible');
+    cover.style.top = `${window.scrollY}px`;
     wrapper.appendTo(cover);
     document.getElementById('closeBtn').addEventListener('click', () => {
       wrapper.element.remove();

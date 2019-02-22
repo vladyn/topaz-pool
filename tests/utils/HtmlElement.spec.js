@@ -1,11 +1,10 @@
 /* global it, describe, beforeEach, afterEach */
 const chai = require('chai');
-const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 require('jsdom-global')();
 import HtmlElement from '../../src/utils/HtmlElement';
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = require('chai');
 
 describe("Tests for HtmlElement constructor function", function() {
   let ul;
