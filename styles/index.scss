@@ -1,11 +1,13 @@
+@import "normalize";
 @import 'mixins';
+@import 'typography';
 html, body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
+
 .grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;

@@ -1,0 +1,32 @@
+// TODO: refactor this typography
+
+body {
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+}
+
+h1 {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+h2 {
+  @extend h1;
+  font-weight: 900;
+  line-height: 21.4px;
+}
+
+h2 {
+  @extend h1;
+  font-weight: 900;
+  font-variant: all-small-caps;
+}
+
+h3 {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}

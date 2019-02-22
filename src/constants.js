@@ -10,8 +10,3 @@ export const DETAILS = {
   page: '1',
   per_page: '42',
 };
-
-// TODO: Remove
-// const example_call = 'https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&api_key=0d2ae097096ffa5edce5e1178ac6295c&group_id=929299@N25&format=json&nojsoncallback=1';
-// const example_single_photo = 'https://farm8.staticflickr.com/7916/40068371023_8a8460bdfb.jpg';
-// const getPhotoInfo = 'https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=0d2ae097096ffa5edce5e1178ac6295c&photo_id=40068371023&secret=8a8460bdfb&format=json&nojsoncallback=1';

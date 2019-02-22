@@ -1,14 +1,14 @@
 import HtmlElement from '../utils/HtmlElement';
 import dateFUT from '../utils/dateService';
-// import {
-//   KEY, DETAILS, API_URL, SECRET,
-// } from '../constants';
+import {
+  KEY, DETAILS, API_URL, SECRET,
+} from '../constants';
 
 const getPhoto = (() => {
   const cover = document.getElementById('cover');
   cover.classList.add('hidden');
   const getImage = async (id, secret) => {
-    const result = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=0d2ae097096ffa5edce5e1178ac6295c&photo_id=${id}&secret=${secret}&format=json&nojsoncallback=1`);
+    const result = await fetch(`${API_URL}?method=flickr.photos.getInfo&api_key=${KEY}&photo_id=${id}&secret=${secret}&format=json&nojsoncallback=1`);
     const json = await result.json();
     return json;
   };
@@ -23,9 +23,9 @@ const getPhoto = (() => {
       .addPicture({
         src: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.id}_${res.photo.secret}.jpg`,
         media: [
-          '(min-width: 480px) and (max-width: 779px)',
-          '(min-width: 780px) and (max-width: 1023px)',
-          '(min-width: 1024px)',
+          '(min-width: 480px) and (max-width: 1200px)',
+          '(min-width: 1201px) and (max-width: 1920px)',
+          '(min-width: 1920px)',
         ],
         srcset: [
           `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}_n.jpg`,
@@ -65,7 +65,7 @@ const getPhoto = (() => {
       .addChild({
         element: 'div',
         class: 'light-tags',
-        textContent: `tags (${res.photo.tags.tag.length}): ${res.photo.tags.tag.map(name => name['_content']).join('; ')}`,
+        textContent: `tags (${res.photo.tags.tag.length}): ${res.photo.tags.tag.map(name => name['_content']).join(' ')}`,
       })
       .addLink({
         id: 'closeBtn',
