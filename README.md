@@ -21,6 +21,10 @@ npm test
 
 You should be able to see the test results report as list in the console.
 
+## Documentation
+Check the documentation at `http://localhost:3000/doc.html` notes about the experience with the app and more details about the technologies and the API. 
+
+
 ## Build with
 - JS ([ECMAScript 2017](http://2ality.com/2016/02/ecmascript-2017.html))
 - [SASS](http://sass-lang.com) on sassy css (SCSS)

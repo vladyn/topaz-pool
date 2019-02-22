@@ -13,8 +13,35 @@
 <body>
     <main>
       <article>
-        <h1>Welcome to the frontend assessment task documentation</h1>
-        <p>a task for...</p>
+        <h1>Welcome to the frontend assignment task documentation.</h1>
+        <p>In this task, I've chosen to consume <a href="https://www.flickr.com/services/api/">Flickr API</a> of a <a href="http://flickr.com">Flickr</a> public groups and one in particular - <a
+          href="https://www.flickr.com/groups/topaz/" title=":">Topaz Software Group Pool</a>. <a href="https://topazlabs.com">Topaz Labs</a> plug-ins bundle is popular among the many photographers' communities. Creating stunning photo effects able to manipulate the colors, curves, adding masks, sharpening edges and many more is in the potential power of Topaz Labs. With that in your hands, you as a passionate photographer or designer can produce stunning photo collages and adjusted photographs. Using them actively in the past I 'm following their photostream, where photographers and designers worldwide are showcasing their work. It's a joy for the eye seeing stunning shots from our planet in all contexts - from the wild nature to the urban daily life.</p>
+        <p>I've developed a simple app regarding the instructions you provided, where the user can:</p>
+        <ul>
+          <li>view the latest uploads in chronological order</li>
+          <li>have a different layout in across the different screen sizes</li>
+          <li>optimally occupy his/her bandwidth letting the browser to decide which image size to download and display
+            depending on the screen size of his/her device. </li>
+          <li>ability to browser the photostream backward and forward by pagination.</li>
+          <li>ability to have a single entry view of a photo with its meta information like tags, description, comment
+            number, location info.</li>
+        </ul>
+        <h2>Technology used</h2>
+        For the core functionality, I've used JavaScript implementation of ECMAScript 2015, 2016 and 2017. Default imports, reveal module patterns and module organization are also present.
+        For the look & feel CSS grid, flexbox for positioning along with viewport units, CSS variables, and media queries on the presentation level. Under the hood, it's Sassy styles to take advantages of directives and nested selectors. CSS architecture is SMACSS module approach (or at least not that strict as the application pretty simple).
+
+        <h2>Testing coverage</h2>
+        <p>There is a testing coverage on a unit level (at a certain level) done by Mocha test runner, Chai assertion
+          library and Sinon for the mocking functionality.</p>
+        <h2>How it's work</h2>
+        <p>It's a pure stream of photos which changes its layout and sizes of the photos depending on the device screen
+          dimensions. You can click on a photo and enlarge it. By doing that - you'll be able to see more information
+          for the author, location, where the photo has been taken, tags, comment numbers, and description.
+          On initial load, you'll have a page of 100 photos from the stream. You can navigate by using pagination.
+          By clicking on a photo, you'll have an enlarged version with metadata. By clicking on it one more time, you'll
+          go to the photo page on Flickr.
+          To get back to the photo stream you should click on the Close link or outside the photo lightbox panel.</p>
+        <em>Enjoy!</em>
       </article>
     </main>
 </body>
