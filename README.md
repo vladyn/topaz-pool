@@ -1,12 +1,10 @@
 # Topaz Pool group
 A test task, consuming [flickr](http://flickr.com) API of a public group done for applying for a front-end developer.
-In this assignment, I've chosen to consume  Flickr API of a Flickr public groups and one in particular - Topaz Software.
 
 # Run
 To get started run the following command.
 ```
 npm install && npm start
-npm test
 ```
 Once everything is bootstraped navigate to `http://localhost:3000` in your browser.
 
@@ -15,7 +13,6 @@ Tests are running under mocha with chai assertion library and sinon for the mock
 To run the tests type the flowing: 
 
 ```
-npm install && npm start
 npm test
 ```
 
