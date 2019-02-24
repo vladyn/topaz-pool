@@ -4,9 +4,22 @@ import {
   DETAILS, API_URL,
 } from '../constants';
 
+/**
+ * Function requesting a single photo, constructing an lightbox element
+ * and adding an event to each of the thumbnails
+ * @return Function addEvent
+ */
 const getPhoto = (() => {
-  const cover = document.getElementById('cover');
-  cover.classList.add('hidden');
+  const cover = HtmlElement.create('div')
+    .addId('cover')
+    .addClasses(['light-cover', 'flex', 'hidden']);
+  document.getElementsByTagName('body')[0].appendChild(cover.element);
+  /**
+   * Function requesting a single photo
+   * @param id - a photo id
+   * @param secret - a single photo attribute
+   * @return JSON response
+   */
   const getImage = async (id, secret) => {
     const partialData = { method: 'flickr.photos.getInfo', photo_id: id, secret };
     const options = { ...DETAILS, ...partialData };
@@ -16,6 +29,11 @@ const getPhoto = (() => {
     const json = await result.json();
     return json;
   };
+  /**
+   * Function constructing an lightbox element
+   * @param res - a json object with the response from the group pool
+   * @returns {void}
+   */
   const buildLightBox = (res) => {
     const wrapper = HtmlElement.create('div')
       .addClasses(['lightbox-wrapper', 'flex-item'])
@@ -78,15 +96,17 @@ const getPhoto = (() => {
         className: 'close',
       });
 
-    cover.classList.remove('hidden');
-    cover.classList.add('visible');
-    cover.style.top = `${window.scrollY}px`;
-    wrapper.appendTo(cover);
-    document.getElementById('closeBtn').addEventListener('click', () => {
+    cover.element.classList.remove('hidden');
+    cover.element.classList.add('visible');
+    cover.element.style.top = `${window.scrollY}px`;
+    wrapper.appendTo(cover.element);
+    function hide() {
       wrapper.element.remove();
-      cover.classList.remove('visible');
-      cover.classList.add('hidden');
-    });
+      cover.element.classList.remove('visible');
+      cover.addClass('hidden');
+    }
+    document.getElementById('closeBtn').addEventListener('click', () => hide());
+    document.getElementById('cover').addEventListener('click', () => hide());
   };
   const addEvent = (response) => {
     response.photos.photo.forEach((prop) => {
