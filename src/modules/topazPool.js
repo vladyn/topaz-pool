@@ -1,12 +1,12 @@
-import { KEY } from "../constants";
 import HtmlElement from "../utils/HtmlElement";
 import dateFUT from "../utils/dateService";
 
 const topazPool = (() => {
-  async function fetchItems(target, key, ...rest) {
-    const endpoint = `${target}?method=${rest[0].method}&api_key=${KEY}&group_id=${rest[0].group_id}`;
-    const endpointOptions = `format=${rest[0].format}&nojsoncallback=${rest[0].callback}`;
-    const result = await fetch(`${endpoint}&${endpointOptions}`);
+  async function fetchItems(target, options) {
+    const url = target;
+    const endpoint = Object.entries(options).map(s => `&${s.join('=')}`);
+    const partial = url + endpoint.join('').substring(1);
+    const result = await fetch(partial);
     const json = await result.json();
     return json;
   }

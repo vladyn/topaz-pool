@@ -1,14 +1,18 @@
 import HtmlElement from '../utils/HtmlElement';
 import dateFUT from '../utils/dateService';
 import {
-  KEY, DETAILS, API_URL, SECRET,
+  DETAILS, API_URL,
 } from '../constants';
 
 const getPhoto = (() => {
   const cover = document.getElementById('cover');
   cover.classList.add('hidden');
   const getImage = async (id, secret) => {
-    const result = await fetch(`${API_URL}?method=flickr.photos.getInfo&api_key=${KEY}&photo_id=${id}&secret=${secret}&format=${DETAILS.format}&nojsoncallback=${DETAILS.callback}`);
+    const partialData = { method: 'flickr.photos.getInfo', photo_id: id, secret };
+    const options = { ...DETAILS, ...partialData };
+    const endpoint = Object.entries(options).map(s => `&${s.join('=')}`);
+    const target = API_URL + endpoint.join('').substring(1);
+    const result = await fetch(target);
     const json = await result.json();
     return json;
   };
@@ -21,18 +25,17 @@ const getPhoto = (() => {
         textContent: res.photo.title['_content'],
       })
       .addPicture({
-        src: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.id}_${res.photo.secret}.jpg`,
+        src: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}.jpg`,
         media: [
-          '(min-width: 480px) and (max-width: 1200px)',
-          '(min-width: 1201px) and (max-width: 1920px)',
-          '(min-width: 1920px)',
+          '(min-width: 480px) and (max-width: 640px)',
+          '(min-width: 641px) and (max-width: 1920px)',
         ],
         srcset: [
           `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}_n.jpg`,
           `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}_z.jpg`,
           `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}_b.jpg`,
         ],
-        href: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.photo.secret}.jpg`,
+        href: `https://farm${res.photo.farm}.staticflickr.com/${res.photo.server}/${res.photo.id}_${res.secret}.jpg`,
         title: res.photo.title['_content'],
         id: `lightbox-${res.photo.id}`,
         secret: `lightbox-${res.photo.secret}`,
