@@ -1,7 +1,18 @@
 import HtmlElement from "../utils/HtmlElement";
 import dateFUT from "../utils/dateService";
 
+/**
+ * @Module topazPool - fetching an response and dealing with it
+ * @returns {Object} fetchItems, handleResponse, renderResponse
+ * @returns {MethodDecorator} fetchItems,
+ * @returns {MethodDecorator} handleResponse,
+ * @returns {MethodDecorator} renderResponse,
+ */
 const topazPool = (() => {
+  /**
+   * @async function
+   * @returns {Promise}
+   */
   async function fetchItems(target, options) {
     const url = target;
     const endpoint = Object.entries(options).map(s => `&${s.join('=')}`);
@@ -10,7 +21,10 @@ const topazPool = (() => {
     const json = await result.json();
     return json;
   }
-
+  /**
+   * @function
+   * @returns {Promise}
+   */
   function handleResponse(response) {
     return new Promise((resolve, reject) => {
       if (response.stat === 'ok') {
@@ -24,12 +38,16 @@ const topazPool = (() => {
     });
   }
 
+  /**
+   * @function
+   * @returns {Promise}
+   */
   function renderResponse(response) {
     const photoStreamContainer = HtmlElement.create('div')
-      .addId('photo-stream')
+      .addId(`photo-stream-p${response.photos.page}`)
       .addChild({
         element: 'ul',
-        id: 'stream-wrapper',
+        id: `stream-wrapper-p${response.photos.page}`,
         class: 'stream-wrapper',
         classes: [
           'block',
@@ -40,7 +58,7 @@ const topazPool = (() => {
     photoStreamContainer.appendTo(document.querySelector('main'));
 
     return new Promise((resolve) => {
-      const ul = photoStreamContainer.getChild('#stream-wrapper');
+      const ul = photoStreamContainer.getChild(`#stream-wrapper-p${response.photos.page}`);
       response.photos.photo.forEach((prop) => {
         ul.addExtendedChild({
           element: 'li',

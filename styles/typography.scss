@@ -1,14 +1,9 @@
-// TODO: refactor this typography
-
 body {
   font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
 
 h1 {
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 26.4px;
+  font: normal normal 700 18px/26.4px inherit;
 }
 
 h2 {
