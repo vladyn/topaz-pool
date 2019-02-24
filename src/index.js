@@ -28,9 +28,31 @@ const loadState = (message = 'loading') => {
   }
 };
 
-loadState("Loading");
+let page = 1;
 
-fetchItems(API_URL, { ...DETAILS, ...{ per_page: 10 } })
-  .then(response => getPhoto.addEvent(response))
-  .catch(error => console.error(error))
-  .finally(() => loadState(''));
+/**
+ * Function watching the DOM loaded state
+ * @state readystatechange | complete
+ */
+document.addEventListener('readystatechange', (event) => {
+  if (event.target.readyState === 'interactive') {
+    loadState("Loading");
+  } else if (event.target.readyState === 'complete') {
+    fetchItems(API_URL, { ...DETAILS })
+      .then(response => getPhoto.addEvent(response))
+      .catch(error => console.error(error))
+      .finally(() => loadState(''));
+
+    /**
+     * Function adding pagination functionality
+     * @element button in use to load more
+     */
+    document.getElementById('more').addEventListener('click', () => {
+      page += 1;
+      fetchItems(API_URL, { ...DETAILS, ...{ page } })
+        .then(response => getPhoto.addEvent(response))
+        .catch(error => console.error(error))
+        .finally(() => loadState(`page ${page}`));
+    });
+  }
+});
