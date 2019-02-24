@@ -1,3 +1,4 @@
+import '../styles/index.scss';
 import { API_URL, DETAILS } from './constants';
 import topazPool from './modules/topazPool';
 import getPhoto from './modules/getPhoto';

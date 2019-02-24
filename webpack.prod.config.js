@@ -21,14 +21,16 @@ module.exports = {
     {
       test: /\.scss$/,
       use: [
-        { loader: "style-loader" },
-        { loader: "css-loader" },
-        { loader: "sass-loader" },
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+        },
+        {
+          loader: 'sass-loader',
+        },
       ],
-    },
-    {
-      test: /\.css$/,
-      use: [MiniCssExtractPlugin.loader, "css-loader"],
     },
     ],
   },
@@ -46,6 +48,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].scss",
+      chunkFilename: "[id].scss",
     }),
     new HtmlWebpackExcludeAssetsPlugin(),
   ],

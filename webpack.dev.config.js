@@ -26,11 +26,12 @@ module.exports = {
         { loader: "style-loader" },
         { loader: "css-loader" },
         { loader: "sass-loader" },
-      ]
-    },{
+      ],
+    },
+    {
       test: /\.svg/,
       use: 'svg-url-loader',
-    }]
+    }],
   },
   resolve: {
     extensions: ['.js'],
