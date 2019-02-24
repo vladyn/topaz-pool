@@ -62,8 +62,7 @@ describe("Tests for Requesting, responding and building the markup", function() 
           }
         });
       };
-      // handleResponse = sinon.stub(topazPool, 'handleResponse');
-      handleResponse = sinon.spy(topazPool, 'handleResponse')
+      handleResponse = sinon.spy(topazPool, 'handleResponse');
       renderResponse = sinon.stub(topazPool, 'renderResponse');
     });
     afterEach(function () {
@@ -89,28 +88,21 @@ describe("Tests for Requesting, responding and building the markup", function() 
         expect(res).to.be.equal(responsePositive);
       });
     });
-    it('should handle the response', function () {
-      handleResponse(responseNegative);
-      expect(handleResponse).to.be.calledOnce;
-      expect(handleResponse).to.be.calledOnceWith(responseNegative);
-    });
     it('should respond positively', function () {
       return expect(handleResponse(responsePositive)).to.eventually.be.fulfilled.then((res) => {
         expect(res).not.to.be.empty;
         expect(res).to.be.equal(responsePositive);
       });
     });
-    it('should respond negatively', function () {
-      return expect(handleResponse(responseNegative)).to.eventually.be.rejected.then((res) => {
-        expect(res).to.be.empty;
-        expect(res).to.be.equal('');
+    it('should be called with a negative response', function () {
+      return handleResponse(responseNegative).should.eventually.be.rejected.then((res) => {
+        expect(handleResponse).to.be.calledOnce;
+        expect(handleResponse).to.be.calledOnceWith(responseNegative);
+        res.should.be.instanceof(Object);
       });
     });
-    it('should respond positively2', function () {
-      return expect(handleResponse(responsePositive)).to.eventually.be.fulfilled.then((res) => {
-        expect(res).not.to.be.empty;
-        expect(res).to.be.equal(responsePositive);
-      });
+    it('should respond negatively', function () {
+      return assert.isRejected(handleResponse(responseNegative), Error, "Response is not OK: ko");
     });
   });
 });

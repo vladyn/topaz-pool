@@ -1,3 +1,5 @@
+import getPhoto from "../../src/modules/getPhoto";
+
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
@@ -36,17 +38,18 @@ const response = {
   },
 };
 
-xdescribe("Add an event to the photo", function() {
+describe("Add an event to the photo", function() {
   before('create stub', function(){
-    sinon.stub(getPhoto, 'addEvent');
+    sinon.stub(getPhoto, 'addEvent').callsFake(function fakeFunction() {
+      return 42;
+    });
   });
   after('clear the floor', function() {
     sinon.restore();
   });
-  beforeEach("Attach the event", function() {
-    getPhoto.addEvent(response);
-  });
   it('should attach an event to the photo link', function () {
-    expect(true).to.be.true;
+    getPhoto.addEvent();
+    getPhoto.addEvent.should.be.calledOnceWith(response);
+    console.log(getPhoto.addEvent(response));
   });
 });
