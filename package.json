@@ -6,7 +6,7 @@
   "module": "main.js",
   "scripts": {
     "start": "webpack-dev-server --watch --progress --color --env.config=dev",
-    "prod": "webpack --env.config=prod",
+    "build": "webpack --env.config=prod",
     "test": "mocha -r esm -r jsdom-global/register --recursive 'tests/'"
   },
   "author": "author's name",
@@ -26,7 +26,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "core-js": "^2.6.3",
-    "css-loader": "0.28.11",
+    "css-loader": "^0.28.11",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -42,6 +42,7 @@
     "html-webpack-plugin": "3.2.0",
     "jsdom": "13.2.0",
     "jsdom-global": "3.0.2",
+    "mini-css-extract-plugin": "^0.5.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "nyc": "^13.3.0",
