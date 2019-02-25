@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --watch --progress --color --env.config=dev",
     "build": "webpack --env.config=prod",
-    "test": "mocha -r esm -r jsdom-global/register --recursive 'tests/'"
+    "test": "mocha -r esm -r jsdom-global/register --recursive 'tests/' --require ignore-styles"
   },
   "author": "author's name",
   "license": "MIT",
@@ -40,6 +40,7 @@
     "glob": "7.1.2",
     "html-webpack-exclude-assets-plugin": "0.0.7",
     "html-webpack-plugin": "3.2.0",
+    "ignore-styles": "^5.0.1",
     "jsdom": "13.2.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "^0.5.0",
