@@ -1,8 +1,10 @@
+import getPhoto from '../../src/modules/getPhoto';
+
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
+
 require('jsdom-global')();
-import getPhoto from '../../src/modules/getPhoto';
 
 chai.use(sinonChai);
 const {

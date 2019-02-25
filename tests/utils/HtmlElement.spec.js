@@ -1,8 +1,11 @@
 /* global it, describe, beforeEach, afterEach */
+import HtmlElement from '../../src/utils/HtmlElement';
+
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
+
 require('jsdom-global')();
-import HtmlElement from '../../src/utils/HtmlElement';
+
 chai.use(sinonChai);
 const { expect } = require('chai');
 

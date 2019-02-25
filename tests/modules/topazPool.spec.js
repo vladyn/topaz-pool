@@ -1,13 +1,16 @@
+import topazPool from '../../src/modules/topazPool';
+
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-require('jsdom-global')();
 const chaiAsPromised = require("chai-as-promised");
-import topazPool from '../../src/modules/topazPool';
+
+require('jsdom-global')();
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
-const { assert, expect } = require('chai');
+const { assert, expect, should } = require('chai');
+
 chai.should();
 
 describe("Tests for Requesting, responding and building the markup", function() {

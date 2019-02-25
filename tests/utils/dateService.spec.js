@@ -1,7 +1,9 @@
+import dateFUT from '../../src/utils/dateService';
+
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-import dateFUT from '../../src/utils/dateService';
+
 chai.use(sinonChai);
 const { expect } = require('chai');
 
