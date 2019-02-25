@@ -5,8 +5,8 @@ import getPhoto from './modules/getPhoto';
 
 /**
  * Async function setting a text representing the status of loaded photo stream
- * @param {string} API endpoint
- * @param {object} API endpoint options
+ * @param a {string} API endpoint
+ * @param b {object} API endpoint options
  * @return Promise
  */
 async function fetchItems(a, b) {
@@ -57,3 +57,5 @@ document.addEventListener('readystatechange', (event) => {
     });
   }
 });
+
+export { fetchItems, loadState };

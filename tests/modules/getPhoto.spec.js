@@ -36,9 +36,7 @@ const response = {
 
 describe("Add an event to the photo", function() {
   before('create stub', function(){
-    sinon.stub(getPhoto, 'addEvent').callsFake(function some(){
-      return response;
-    });
+    sinon.stub(getPhoto, 'addEvent').callsFake(() => response);
   });
   after('clear the floor', function() {
     sinon.restore();
