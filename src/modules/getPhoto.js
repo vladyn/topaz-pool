@@ -35,6 +35,20 @@ const getPhoto = (() => {
    * @returns {void}
    */
   const buildLightBox = (res) => {
+    const textContent = () => {
+      let content = '';
+      if (!res.photo.hasOwnProperty('location')) {
+        return content;
+      }
+      if (res.photo.location.hasOwnProperty('country')) {
+        content += `Country: ${res.photo.location.country['_content']}, `;
+      }
+
+      if (res.photo.location.hasOwnProperty('region')) {
+        content += `Region: ${res.photo.location.region['_content']}`;
+      }
+      return content;
+    };
     const wrapper = HtmlElement.create('div')
       .addClasses(['lightbox-wrapper', 'flex-item'])
       .addChild({
@@ -81,7 +95,7 @@ const getPhoto = (() => {
       .addChild({
         element: 'div',
         class: 'light-origin',
-        textContent: res.photo.hasOwnProperty('location') ? `Country: ${res.photo.location.country['_content']}, Region: ${res.photo.location.region['_content']}` : null,
+        textContent: textContent(),
       })
       .addChild({
         element: 'div',

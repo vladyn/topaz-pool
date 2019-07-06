@@ -36,7 +36,8 @@ let page = 1;
  * @state readystatechange | complete
  */
 document.addEventListener('readystatechange', (event) => {
-  if (event.target.readyState === 'interactive') {
+  console.log(event);
+  if (event === 'interactive') {
     loadState("Loading");
   } else if (event.target.readyState === 'complete') {
     fetchItems(API_URL, { ...DETAILS })
